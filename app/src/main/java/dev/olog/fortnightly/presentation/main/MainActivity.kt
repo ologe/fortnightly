@@ -1,21 +1,26 @@
 package dev.olog.fortnightly.presentation.main
 
 import android.os.Bundle
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import dagger.android.support.DaggerAppCompatActivity
 import dev.olog.fortnightly.R
-import dev.olog.fortnightly.data.ArticleRepository
+import dev.olog.fortnightly.presentation.extensions.subscribe
+import dev.olog.fortnightly.presentation.extensions.viewModelProvider
+import dev.olog.fortnightly.utils.lazyFast
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.layout_toolbar.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class MainActivity : DaggerAppCompatActivity(), CoroutineScope by MainScope() {
+class MainActivity : DaggerAppCompatActivity() {
 
-    @Inject lateinit var repo: ArticleRepository
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    private val viewModel by lazyFast {
+        viewModelProvider<MainActivityViewModel>(viewModelFactory)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,10 +29,11 @@ class MainActivity : DaggerAppCompatActivity(), CoroutineScope by MainScope() {
         list.adapter = SimpleAdapter()
         list.layoutManager = LinearLayoutManager(this)
 
-        launch {
-            val stories = repo.getTopStories()
-            println(stories)
-        }
+        viewModel.observeData
+            .subscribe(this) {
+                println(it)
+            }
+
     }
 
     override fun onResume() {

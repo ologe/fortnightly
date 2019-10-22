@@ -1,7 +1,7 @@
 package dev.olog.fortnightly.core
 
 data class Article(
-    val id: Int,
+    val id: Long,
     val title: String,
     val summary: String,
     val section: String,

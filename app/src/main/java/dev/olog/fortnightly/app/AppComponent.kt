@@ -7,7 +7,7 @@ import dagger.android.AndroidInjectionModule
 import dagger.android.AndroidInjector
 import dev.olog.fortnightly.data.di.DataModule
 import dev.olog.fortnightly.data.di.NetworkModule
-import dev.olog.fortnightly.presentation.main.MainActivityInjector
+import dev.olog.fortnightly.presentation.main.di.MainActivityInjector
 import dev.olog.fortnightly.presentation.viewmodel.ViewModelModule
 import javax.inject.Singleton
 

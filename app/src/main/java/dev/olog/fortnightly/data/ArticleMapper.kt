@@ -4,7 +4,7 @@ import dev.olog.fortnightly.core.Article
 
 fun Result.toDomain(): Article {
     return Article(
-        id = 1,
+        id = this.url.hashCode().toLong(), // TODO hacky
         title = this.title,
         summary = this.abstract,
         section = this.section,
