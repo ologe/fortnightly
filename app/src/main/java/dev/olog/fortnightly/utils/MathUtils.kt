@@ -1,4 +1,4 @@
-package dev.olog.fortnightly.presentation.extensions
+package dev.olog.fortnightly.utils
 
 fun clamp(value: Int, min: Int, max: Int): Int {
     if (value < min) {

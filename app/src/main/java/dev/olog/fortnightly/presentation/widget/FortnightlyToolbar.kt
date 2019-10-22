@@ -10,7 +10,7 @@ import com.google.android.material.shape.CornerFamily
 import com.google.android.material.shape.MaterialShapeDrawable
 import com.google.android.material.shape.ShapeAppearanceModel
 import dev.olog.fortnightly.R
-import dev.olog.fortnightly.presentation.extensions.clamp
+import dev.olog.fortnightly.utils.clamp
 import dev.olog.fortnightly.presentation.extensions.colorPrimary
 import dev.olog.fortnightly.presentation.extensions.dipf
 import dev.olog.fortnightly.presentation.extensions.setMargin

@@ -1,17 +1,14 @@
-package dev.olog.fortnightly.presentation
+package dev.olog.fortnightly.presentation.main
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import dagger.android.support.DaggerAppCompatActivity
 import dev.olog.fortnightly.R
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.layout_toolbar.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : DaggerAppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,19 +36,3 @@ class MainActivity : AppCompatActivity() {
 
 }
 
-class SimpleHolder(view: View) : RecyclerView.ViewHolder(view)
-
-class SimpleAdapter : RecyclerView.Adapter<SimpleHolder>() {
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SimpleHolder {
-        val inflater = LayoutInflater.from(parent.context)
-        val view = inflater.inflate(R.layout.item, parent, false)
-        return SimpleHolder(view)
-    }
-
-    override fun getItemCount(): Int = 20
-
-    override fun onBindViewHolder(holder: SimpleHolder, position: Int) {
-
-    }
-}
