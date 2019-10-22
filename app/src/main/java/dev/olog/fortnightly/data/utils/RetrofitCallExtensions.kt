@@ -1,4 +1,4 @@
-package dev.olog.fortnightly.data
+package dev.olog.fortnightly.data.utils
 
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.yield

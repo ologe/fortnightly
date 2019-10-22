@@ -1,7 +1,10 @@
-package dev.olog.fortnightly.data
+package dev.olog.fortnightly.data.repository
 
 import dev.olog.fortnightly.core.Article
 import dev.olog.fortnightly.core.ArticlesGateway
+import dev.olog.fortnightly.data.mapper.toDomain
+import dev.olog.fortnightly.data.utils.networkCall
+import dev.olog.fortnightly.data.service.ArticleService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject

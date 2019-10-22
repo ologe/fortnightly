@@ -3,7 +3,7 @@ package dev.olog.fortnightly.data.di
 import dagger.Binds
 import dagger.Module
 import dev.olog.fortnightly.core.ArticlesGateway
-import dev.olog.fortnightly.data.ArticleRepository
+import dev.olog.fortnightly.data.repository.ArticleRepository
 import javax.inject.Singleton
 
 @Module

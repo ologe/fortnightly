@@ -1,6 +1,7 @@
-package dev.olog.fortnightly.data
+package dev.olog.fortnightly.data.service
 
 import dev.olog.fortnightly.BuildConfig
+import dev.olog.fortnightly.data.entity.TopArticlesRemote
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path

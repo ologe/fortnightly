@@ -1,4 +1,4 @@
-package dev.olog.fortnightly.data
+package dev.olog.fortnightly.data.entity
 
 data class TopArticlesRemote(
     val copyright: String,

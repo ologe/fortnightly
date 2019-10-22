@@ -3,7 +3,7 @@ package dev.olog.fortnightly.data.di
 import dagger.Lazy
 import dagger.Module
 import dagger.Provides
-import dev.olog.fortnightly.data.ArticleService
+import dev.olog.fortnightly.data.service.ArticleService
 import okhttp3.Call
 import okhttp3.OkHttpClient
 import okhttp3.Request

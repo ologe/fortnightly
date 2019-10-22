@@ -1,6 +1,7 @@
-package dev.olog.fortnightly.data
+package dev.olog.fortnightly.data.mapper
 
 import dev.olog.fortnightly.core.Article
+import dev.olog.fortnightly.data.entity.Result
 
 fun Result.toDomain(): Article {
     return Article(
