@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="HeaderStyle">
+        <item name="android:ellipsize">none</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textColor">?android:textColorPrimary</item>
+        <item name="android:textSize">28sp</item>
+        <item name="android:translationY">-2dp</item>
+        <item name="fontFamily">@font/old_london</item>
+    </style>
+
+</resources>

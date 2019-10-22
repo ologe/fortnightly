@@ -1,94 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <dev.olog.fortnightly.presentation.widget.FortnightlyToolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/toolbar"
-        android:elevation="@dimen/toolbar_elevation">
-
-        <ImageButton
-            android:id="@+id/menu"
-            android:layout_width="@dimen/icon_size"
-            android:layout_height="@dimen/icon_size"
-            android:src="@drawable/vd_menu"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/header1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:ellipsize="none"
-            android:singleLine="true"
-            android:text="The "
-            android:textColor="?android:textColorPrimary"
-            android:textSize="28sp"
-            app:fontFamily="@font/old_london"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/menu"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/header2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text="F"
-            android:textColor="?android:textColorPrimary"
-            android:textSize="28sp"
-            app:fontFamily="@font/old_london"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/header1"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/header3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text="ortnightly"
-            android:textColor="?android:textColorPrimary"
-            android:textSize="28sp"
-            app:fontFamily="@font/old_london"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/header2"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/headerPlaceholder"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:paddingEnd="28dp"
-            android:text="F"
-            android:textColor="?android:textColorPrimary"
-            android:textSize="28sp"
-            android:visibility="invisible"
-            app:fontFamily="@font/old_london"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/menu"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageButton
-            android:id="@+id/search"
-            android:layout_width="@dimen/icon_size"
-            android:layout_height="@dimen/icon_size"
-            android:layout_gravity="center_vertical|end"
-            android:src="@drawable/vd_search"
-            android:tint="@color/fortnightly_purple"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </dev.olog.fortnightly.presentation.widget.FortnightlyToolbar>
+    <include layout="@layout/layout_toolbar" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list"
