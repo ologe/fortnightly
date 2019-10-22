@@ -28,7 +28,7 @@
     </style>
 
     <style name="Headline5" parent="TextAppearance.MaterialComponents.Headline5">
-        <item name="fontFamily">@font/libre_franklin_regular</item>
+        <item name="fontFamily">@font/libre_franklin_medium</item>
         <item name="android:textSize">24sp</item>
         <item name="android:textColor">?android:textColorPrimary</item>
     </style>
@@ -78,10 +78,11 @@
     </style>
 
     <style name="Overline" parent="TextAppearance.MaterialComponents.Overline">
-        <item name="fontFamily">@font/libre_franklin_bold</item>
+        <item name="fontFamily">@font/libre_franklin_black</item>
         <item name="android:textAllCaps">true</item>
-        <item name="android:textSize">10sp</item>
+        <item name="android:textSize">12sp</item>
         <item name="android:textColor">?android:textColorPrimary</item>
+        <item name="android:letterSpacing">0.1</item>
     </style>
 
 

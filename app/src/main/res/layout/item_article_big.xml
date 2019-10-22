@@ -11,23 +11,24 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:adjustViewBounds="true"
+        android:background="@android:color/darker_gray"
         android:scaleType="centerCrop"
         app:layout_constraintDimensionRatio="1.4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:src="@tools:sample/avatars"
-        android:background="@android:color/darker_gray"/>
+        tools:src="@tools:sample/avatars" />
 
     <TextView
         android:id="@+id/section"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:textAppearance="@style/Overline"
         app:layout_constraintEnd_toEndOf="@+id/image"
         app:layout_constraintStart_toStartOf="@+id/image"
         app:layout_constraintTop_toBottomOf="@+id/image"
-        tools:text="US" />
+        tools:text="World" />
 
     <TextView
         android:id="@+id/title"
@@ -35,9 +36,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_small"
         android:maxLines="3"
+        android:textAppearance="@style/Headline5"
+        app:fontFamily="@font/libre_franklin_bold"
         app:layout_constraintEnd_toEndOf="@+id/image"
         app:layout_constraintStart_toStartOf="@+id/image"
         app:layout_constraintTop_toBottomOf="@+id/section"
-        tools:text="@tools:sample/lorem/random" />
+        tools:text="The Quiet, Yet Powerful Healthcare Revolution" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
