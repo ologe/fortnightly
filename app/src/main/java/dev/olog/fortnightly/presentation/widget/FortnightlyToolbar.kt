@@ -12,6 +12,7 @@ import com.google.android.material.shape.ShapeAppearanceModel
 import dev.olog.fortnightly.R
 import dev.olog.fortnightly.utils.clamp
 import dev.olog.fortnightly.presentation.extensions.colorPrimary
+import dev.olog.fortnightly.presentation.extensions.dimen
 import dev.olog.fortnightly.presentation.extensions.dipf
 import dev.olog.fortnightly.presentation.extensions.setMargin
 import dev.olog.fortnightly.utils.lazyFast
@@ -36,6 +37,7 @@ class FortnightlyToolbar(
     private val maxAllowedRadius: Float by lazyFast { height / 2f }
     private val scrimTranslation: Float by lazyFast { right.toFloat() - headerPlaceholder.right.toFloat() }
     private val header2Translation: Float by lazyFast { abs(headerPlaceholder.left.toFloat() - header2.left.toFloat()) }
+    private val maxElevation: Float by lazyFast { context.dimen(R.dimen.toolbar_elevation).toFloat() }
 
     private val shape = ShapeAppearanceModel.builder()
         .setBottomRightCorner(CornerFamily.CUT, context.dipf(0))
@@ -64,9 +66,10 @@ class FortnightlyToolbar(
         header3.alpha = slowerInterpolator.getInterpolation(invertedRatio)
 
         val translation = -(header2Translation * ratio)
-//        header1.translationX = translation
         header2.translationX = translation
         header3.translationX = translation
+
+        elevation = maxElevation * slowerInterpolator.getInterpolation(ratio)
 
         setMargin(right = (scrimTranslation * ratio).toInt())
     }

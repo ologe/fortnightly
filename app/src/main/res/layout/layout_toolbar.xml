@@ -4,7 +4,7 @@
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="@dimen/toolbar"
-    android:elevation="@dimen/toolbar_elevation">
+    android:elevation="0dp">
 
     <ImageButton
         android:id="@+id/menu"
