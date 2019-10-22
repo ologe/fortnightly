@@ -10,6 +10,7 @@ fun Result.toDomain(): Article {
         summary = this.abstract,
         section = this.section,
         subSection = this.subsection,
-        url = this.url
+        url = this.url,
+        image = this.multimedia.find { it.format == "superJumbo" }?.url ?: ""
     )
 }

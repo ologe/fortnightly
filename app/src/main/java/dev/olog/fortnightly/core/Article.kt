@@ -6,5 +6,6 @@ data class Article(
     val summary: String,
     val section: String,
     val subSection: String,
-    val url: String
+    val url: String,
+    val image: String
 )

@@ -19,7 +19,13 @@ allprojects {
     repositories {
         google()
         jcenter()
-        
+    }
+
+    gradle.projectsEvaluated { // TODO remove after coroutines became stable
+        tasks.withType(org.jetbrains.kotlin.gradle.tasks.AbstractKotlinCompile).all {
+            kotlinOptions.freeCompilerArgs += ["-Xuse-experimental=kotlinx.coroutines.FlowPreview"]
+            kotlinOptions.freeCompilerArgs += ["-Xuse-experimental=kotlinx.coroutines.ExperimentalCoroutinesApi"]
+        }
     }
 }
 

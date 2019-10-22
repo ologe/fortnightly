@@ -18,6 +18,8 @@ class MainActivity : DaggerAppCompatActivity() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
+    private val adapter by lazyFast { MainActivityAdapter() }
+
     private val viewModel by lazyFast {
         viewModelProvider<MainActivityViewModel>(viewModelFactory)
     }
@@ -26,13 +28,13 @@ class MainActivity : DaggerAppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        list.adapter = SimpleAdapter()
+        lifecycle.addObserver(adapter)
+
+        list.adapter = adapter
         list.layoutManager = LinearLayoutManager(this)
 
         viewModel.observeData
-            .subscribe(this) {
-                println(it)
-            }
+            .subscribe(this, adapter::updateDataSet)
 
     }
 
@@ -44,6 +46,11 @@ class MainActivity : DaggerAppCompatActivity() {
     override fun onPause() {
         super.onPause()
         list.removeOnScrollListener(listener)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        list.adapter = null
     }
 
     private val listener = object : RecyclerView.OnScrollListener() {
