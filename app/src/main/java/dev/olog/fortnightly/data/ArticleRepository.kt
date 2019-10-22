@@ -2,10 +2,16 @@ package dev.olog.fortnightly.data
 
 import dev.olog.fortnightly.core.Article
 import dev.olog.fortnightly.core.ArticlesGateway
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class ArticleRepository : ArticlesGateway {
+class ArticleRepository @Inject constructor(
+    private val service: ArticleService
+) : ArticlesGateway {
 
-    override suspend fun topStories(): List<Article> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override suspend fun getTopStories(): List<Article> = withContext(Dispatchers.IO) {
+        val result = networkCall { service.fetchTopStories() }
+        result.results.map { it.toDomain() }
     }
 }
