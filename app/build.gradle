@@ -1,32 +1,111 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.2"
+
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
     defaultConfig {
         applicationId "dev.olog.fortnightly"
-        minSdkVersion 21
-        targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [
+                        "room.schemaLocation"  : "$projectDir/schemas".toString(),
+                        "room.incremental"     : "true",
+                        "room.expandProjection": "true"]
+            }
+        }
     }
+
     buildTypes {
+
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+
+        debug {
+
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    dexOptions {
+        preDexLibraries true
+    }
+
+    sourceSets {
+        androidTest.assets.srcDirs += files("$projectDir/schemas".toString())
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+
+kapt {
+    useBuildCache = true
+    correctErrorTypes = true
+
+    javacOptions {
+        option("-Xmaxerrs", 500)
     }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.core:core-ktx:1.1.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation lib_core.kotlin
+    implementation lib_core.coroutines
+    implementation lib_core.coroutines_android
+
+// di
+    implementation lib_core.dagger
+    kapt lib_core.dagger_processor
+    implementation lib_core.dagger_android
+    implementation lib_core.dagger_android_support
+    kapt lib_core.dagger_android_processor
+
+//    android x libs
+    implementation lib_x.core
+    implementation lib_x.core_ktx
+    implementation lib_x.appcompat
+    implementation lib_x.material
+    implementation lib_x.recycler
+    implementation lib_x.constraint_layout
+
+    implementation lib_x.lifecycle_runtime
+    implementation lib_x.lifecycle_extensions
+    implementation lib_x.lifecycle_java8
+    implementation lib_x.lifecycle_ktx
+
+//    db
+    implementation lib_data.room
+    implementation lib_data.room_ktx
+    kapt lib_data.room_processor
+
+//    network
+    implementation lib_network.gson
+    implementation lib_network.ok_http
+    implementation lib_network.ok_http_interceptor
+    implementation lib_network.retrofit
+    implementation lib_network.retrofit_gson
+
+//    ui lib
+    implementation lib_ui.coil
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
