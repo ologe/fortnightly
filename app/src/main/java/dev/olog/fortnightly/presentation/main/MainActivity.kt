@@ -1,7 +1,10 @@
 package dev.olog.fortnightly.presentation.main
 
 import android.os.Bundle
+import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import dagger.android.support.DaggerAppCompatActivity
@@ -28,10 +31,14 @@ class MainActivity : DaggerAppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val layoutManager = LinearLayoutManager(this)
+        val divider = DividerItemDecoration(this, layoutManager.orientation)
+
         lifecycle.addObserver(adapter)
 
         list.adapter = adapter
-        list.layoutManager = LinearLayoutManager(this)
+        list.layoutManager = layoutManager
+        list.addItemDecoration(divider)
 
         viewModel.observeData
             .subscribe(this, adapter::updateDataSet)
