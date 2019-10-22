@@ -42,10 +42,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
 
             buildConfigField 'String', "GUARDIAN_KEY", localProperties.getProperty('guardian_key')
+            buildConfigField 'String', "NY_TIMES_KEY", localProperties.getProperty('ny_times_key')
         }
 
         debug {
             buildConfigField 'String', "GUARDIAN_KEY", localProperties.getProperty('guardian_key')
+            buildConfigField 'String', "NY_TIMES_KEY", localProperties.getProperty('ny_times_key')
         }
     }
 
