@@ -23,7 +23,8 @@ class FortnightlyToolbar(
     attrs: AttributeSet
 ) : ConstraintLayout(context, attrs) {
 
-    private val interpolation = AccelerateInterpolator(5f)
+    private val interpolator = AccelerateInterpolator(5f)
+    private val slowerInterpolator = AccelerateInterpolator(0.8f)
 
     private val searchView by lazyFast { findViewById<View>(R.id.search) }
 
@@ -57,13 +58,13 @@ class FortnightlyToolbar(
         // when 'new' is low, 'invertedRatio' will be near 1
         val invertedRatio = 1f - ratio
 
-        val accelerated = interpolation.getInterpolation(invertedRatio)
+        val accelerated = interpolator.getInterpolation(invertedRatio)
         searchView.alpha = accelerated
         header1.alpha = accelerated
-        header3.alpha = accelerated
+        header3.alpha = slowerInterpolator.getInterpolation(invertedRatio)
 
         val translation = -(header2Translation * ratio)
-        header1.translationX = translation
+//        header1.translationX = translation
         header2.translationX = translation
         header3.translationX = translation
 
@@ -81,7 +82,7 @@ class FortnightlyToolbar(
      */
     fun translate(amount: Int) {
         allMovement += amount
-        radius = clamp(allMovement, 0f, maxAllowedRadius)
+        radius = clamp(allMovement * 1.5f, 0f, maxAllowedRadius)
     }
 
 
