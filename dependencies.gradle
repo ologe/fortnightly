@@ -11,7 +11,7 @@ ext {
     lifecycle = '2.1.0'
 
     //    ui
-    coil = '0.8.0'
+    coil = '0.8.0' // TODO seems slow
 
 //    data
     room = '2.2.0'

@@ -32,6 +32,7 @@ class MainActivity : DaggerAppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val layoutManager = LinearLayoutManager(this)
+        // TODO doesn't match fortnightly style
         val divider = DividerItemDecoration(this, layoutManager.orientation)
 
         lifecycle.addObserver(adapter)
