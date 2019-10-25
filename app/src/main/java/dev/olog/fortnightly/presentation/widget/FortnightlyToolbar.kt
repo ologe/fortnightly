@@ -10,11 +10,10 @@ import com.google.android.material.shape.CornerFamily
 import com.google.android.material.shape.MaterialShapeDrawable
 import com.google.android.material.shape.ShapeAppearanceModel
 import dev.olog.fortnightly.R
-import dev.olog.fortnightly.utils.clamp
 import dev.olog.fortnightly.presentation.extensions.colorPrimary
 import dev.olog.fortnightly.presentation.extensions.dimen
-import dev.olog.fortnightly.presentation.extensions.dipf
 import dev.olog.fortnightly.presentation.extensions.setMargin
+import dev.olog.fortnightly.utils.clamp
 import dev.olog.fortnightly.utils.lazyFast
 import kotlin.math.abs
 import kotlin.properties.Delegates
@@ -37,12 +36,15 @@ class FortnightlyToolbar(
     private val maxAllowedRadius: Float by lazyFast { height / 2f }
     private val scrimTranslation: Float by lazyFast { right.toFloat() - headerPlaceholder.right.toFloat() }
     private val header2Translation: Float by lazyFast { abs(headerPlaceholder.left.toFloat() - header2.left.toFloat()) }
-    private val maxElevation: Float by lazyFast { context.dimen(R.dimen.toolbar_elevation).toFloat() }
+    private val maxElevation: Float by lazyFast {
+        context.dimen(R.dimen.toolbar_elevation).toFloat()
+    }
 
     private val shape = ShapeAppearanceModel.builder()
-        .setBottomRightCorner(CornerFamily.CUT, context.dipf(0))
+        .setBottomRightCorner(CornerFamily.CUT, context.dimen(R.dimen.toolbar) / 2f)
+        .build()
 
-    private val drawable = MaterialShapeDrawable(shape.build()).apply {
+    private val drawable = MaterialShapeDrawable(shape).apply {
         this.tintList = ColorStateList.valueOf(context.colorPrimary())
     }
 
@@ -53,12 +55,13 @@ class FortnightlyToolbar(
         if (abs(old - new) < 0.001f) {
             return@observable
         }
-        drawable.shapeAppearanceModel = shape.setBottomRightCorner(CornerFamily.CUT, new).build()
 
         // when 'new' is low, 'ratio' will be near 0
         val ratio = new / maxAllowedRadius
         // when 'new' is low, 'invertedRatio' will be near 1
         val invertedRatio = 1f - ratio
+
+        drawable.interpolation = ratio
 
         val accelerated = interpolator.getInterpolation(invertedRatio)
         searchView.alpha = accelerated
