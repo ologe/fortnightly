@@ -13,6 +13,7 @@ import dev.olog.fortnightly.R
 import dev.olog.fortnightly.presentation.extensions.colorPrimary
 import dev.olog.fortnightly.presentation.extensions.dimen
 import dev.olog.fortnightly.presentation.extensions.setMargin
+import dev.olog.fortnightly.utils.CubicBezierInterpolator
 import dev.olog.fortnightly.utils.clamp
 import dev.olog.fortnightly.utils.lazyFast
 import kotlin.math.abs
@@ -24,7 +25,8 @@ class FortnightlyToolbar(
 ) : ConstraintLayout(context, attrs) {
 
     private val interpolator = AccelerateInterpolator(5f)
-    private val slowerInterpolator = AccelerateInterpolator(0.8f)
+    // try different values here https://cubic-bezier.com/#0,.99,1,.67
+    private val cubicInterpolator = CubicBezierInterpolator(0f, .99f, 1f, .67f)
 
     private val searchView by lazyFast { findViewById<View>(R.id.search) }
 
@@ -66,13 +68,13 @@ class FortnightlyToolbar(
         val accelerated = interpolator.getInterpolation(invertedRatio)
         searchView.alpha = accelerated
         header1.alpha = accelerated
-        header3.alpha = slowerInterpolator.getInterpolation(invertedRatio)
+        header3.alpha = cubicInterpolator.getInterpolation(invertedRatio)
 
         val translation = -(header2Translation * ratio)
         header2.translationX = translation
         header3.translationX = translation
 
-        elevation = maxElevation * slowerInterpolator.getInterpolation(ratio)
+        elevation = maxElevation * cubicInterpolator.getInterpolation(ratio)
 
         setMargin(right = (scrimTranslation * ratio).toInt())
     }
